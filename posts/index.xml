@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on JN的博客</title>
+    <link>https://jn0916.github.io/posts/</link>
+    <description>Recent content in Posts on JN的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-Hans</language>
+    <lastBuildDate>Tue, 03 Dec 2019 17:20:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://jn0916.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用hugo搭建个人博客</title>
+      <link>https://jn0916.github.io/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Tue, 03 Dec 2019 17:20:31 +0800</pubDate>
+      
+      <guid>https://jn0916.github.io/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>用hugo搭建个人博客 在这里记录一下如何使用Github +hugo动手搭建自己的个人博客。
+Githubs是一个静态网站托管服务，可以管理你的来自一个Github库的个人的、组织的、或者项目的页面。
+Hugo是由Go语言实现的静态网站生成器。
+以下以Windowns为例来一步步搭建：
+安装Hugo   在Hugo release页面下载对应的windowns安装包hugo_XXX_Windows-64bit.zip。
+  把压缩包解压，解压到C:\Software\hugo\hugo.exe
+  把C:\Software\hugo加到PATH
+  在git bash 中输入hugo version看看是否安装完成，如果有以下跳出来就表示成功了：
+Hugo Static Site Generator v0.60.1-96066756 windows/amd64 BuildDate: 2019-11-29T14:57:23Z
+  用Hugo生成个人博客 进入Hugo官网，按照它的步骤从step2到step7来生成博客
+  创建站点，在自己要放的文件目录中打开git bash,输入命令，把命令的quickstart改为自己的网站文件夹名字jn0916.github.io-creator
+hugo new site jn0916.github.io-creator
+  添加主题，在自己网站文件夹目录下jn0916.github.io-creator运行以下命令：
+   git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml  新建一篇名为my-first-post的文章，命令执行后使用Visual Studio Code编辑文章，并保存。(把draft改为false表示不是草稿)  hugo new posts/my-first-post.md  本地预览网站效果，http://localhost:1313 在这里观看效果。  hugo server -D   网站配置，在Visual Studio Code编辑 config.</description>
+    </item>
+    
+  </channel>
+</rss>
