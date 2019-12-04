@@ -34,7 +34,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://jn0916.github.io/posts/" />
-<meta property="og:updated_time" content="2019-12-03T17:20:31+08:00" />
+<meta property="og:updated_time" content="2019-12-04T13:29:44+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content=""><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -89,6 +89,39 @@
   <article class="pa3 pa4-ns nested-copy-line-height nested-img">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://jn0916.github.io/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/" class="link black dim">
+        Maven与java包管理
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Maven与java包管理 一、java包管理 题目中的java包管理中的包指的是jar包，这个jar包是什么呢：Java中的jar文件，里面装的是.class文件。其实就是一个压缩包。
+1. JVM的工作 jvm的工作很简单就是：
+ 执行一个类的字节码 假如这个过程中碰到了新的类，加载他  2. classpath classpath是一个类路径，jvm加载类的时候会挨个在classpath中找，直到找到为止。
+3.传递性依赖 传递性依赖是指你依赖的类还依赖了别的类，所以要把所有的类放入classpath中。
+4. 包冲突 传递性依赖产生的一个后果就是可能会发生多个同名类同时出现在Classpath中，这就可能会发生包冲突，变成Classpath hell。
+包冲突报的错：
+AbstrctMethodError
+NoClassDefFoundError
+ClassNotFoundException
+LinkageError
+二、Maven包管理 Convention over configuration-约定优于配置 按照maven的一些约定，方便所有人的操作，例如目录结构什么的。
+1. Maven的中央仓库 Maven 中央仓库是由 Maven 社区提供的仓库，其中包含了大量常用的库。就是按照一定的约定存储包。Maven主仓库
+2. Maven的本地仓库  默认位于~/.m2 从中央仓库下载的第三方包放在这里进行缓存  3. Maven的包  由groupId、artifactId、version三个检索坐标信息来引入包。 version是根据语义化版本来约定的。  例如以下的信息：
+&lt;groupId&gt;org.junit.jupiter&lt;/groupId&gt; &lt;artifactId&gt;junit-jupiter-api&lt;/artifactId&gt; &lt;version&gt;5.4.2&lt;/version&gt; maven是通过坐标来引入jar的，在添加jar的同时也可以指定这个jar包的作用范围。 maven的依赖范围包括： compile，provide，runtime，test，system。  compile：表示编译范围，指A在编译时依赖B，该范围为默认依赖范围。编译范围的依赖会用在编译，测试，运行，由于运行时需要，所以编译范围的依赖会被打包。
+provide：provide依赖只有当jdk或者一个容器已提供该依赖之后才使用。provide依赖在编译和测试时需要，在运行时不需要。例如：servlet api被Tomcat容器提供了。
+runtime：runtime依赖在运行和测试系统时需要，但在编译时不需要。例如：jdbc的驱动包。由于运行时需要，所以runtime范围的依赖会被打包。
+test：test范围依赖在编译和运行时都不需要，只在测试编译和测试运行时需要。例如：Junit。由于运行时不需要，所以test范围依赖不会被打包。
+system：system范围依赖与provide类似，但是必须显示的提供一个对于本地系统中jar文件的路径。一般不推荐使用。
+4. Maven解决包冲突  传递性依赖的原则：绝对不允许最终的classpath出现同名不同版本的jar包 Maven包冲突解决原则:离项目最近的jar包使用 Mvn dependency:tree命令行查看依赖树 解决包冲突两种方法：   引入需要的包，让引入的包离项目最近 排除掉冲突的包groupId、artifactId  IDEA中的插件Maven help 也可以解决包冲突  
+    </div>
+  </div>
+</div>
+</div>
       
         <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
   <div class="bg-white mb3 pa4 gray overflow-hidden">
