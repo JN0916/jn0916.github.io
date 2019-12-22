@@ -6,10 +6,27 @@
     <description>Recent content on JN的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Wed, 04 Dec 2019 13:29:44 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 21 Dec 2019 10:01:35 +0800</lastBuildDate>
     
 	<atom:link href="https://jn0916.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Collection体系小结</title>
+      <link>https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Sat, 21 Dec 2019 10:01:35 +0800</pubDate>
+      
+      <guid>https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</guid>
+      <description>Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存储对象 3. 可以存储多种类型对象  Collection Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）。一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行，于是衍生出两个子类接口List和Set。
+collection体系的结构图 Collection是一个接口，该接口定义了如下操作集合元素的方法：
+ boolean add(Object o):向集合添加一个元素。 boolean addAll(Collection c):把集合C中的所有元素添加到另一个集合中。 Void clear():删除集合中所有元素。 boolean remove(Object o):删除集合中指定元素o。 boolean removeAll(Collection c):从集合中删除集合C里包含的所有元素。 boolean isEmpty():判断集合是否为空。 boolean contains(Object o):判断集合中是否存在指定元素o。 boolean cotainsAll(Collection c):判断集合中是否包含集合C中的所有元素。 lterator iterator():返回一个lterator对象，用来遍历集合中的元素。 int size():返回集合中的元素个数。 boolean retainAll(Collection c):求交集的功能，从集合中删除集合C里不包含的元素。 Object[] toArray():把集合变成数组。  List List最常用的是类是ArrayList,其本质上就是一个数组。数组长度是有限的，ArrayList可无限&amp;quot;存储&amp;rdquo;,这其中就是动态扩容实现的。动态扩容简单来说就是创建一个更大的空间，把所有数据拷贝进去。
+Set Set接口下的元素是无序且不可重复的。
+HashSet 利用Hash算法实现的Set,保证其中元素的唯一性依据两个重要的约定：equals与hashCode
+ 首先判断hashCode()值是否相同 相同再继续判断equals(),看返回值，true就添加进集合  hashCode有三大原则：
+ 同一对象必须始终返回相同的hashCode值 两个相同的equals返回true,必须返回相同的hashCode值 两个对象不等，也可能返回相同的hashCode值  Map Map是不同于collection的存在，map是一个键值对形式的集合。它的元素都是有键和值组成。Map的键(key)是唯一的,值(value)可以重复。
+Map结构图 Map接口定义了如下方法：
+ V put(K key ,V value) :当key在集合中不存在是,添加元素;当key存在时替换元素 boolean containsKey (Object key) :判断指定的键是否在集合中存在 boolean containsValue(Object value):判断指定的值是否在集合中存在 boolean isEmpty() :判断集合是否为空 Void clear():清除所有键值对数据 Object get (Object key) :根据键获取值 Setkeyset(): 所有键的集合 Collectionvalues() :所有值的集合 Int size()：返回Map里的key-value对的个数  HashMap与HashSet本质上是一种东西</description>
+    </item>
     
     <item>
       <title>Maven与java包管理</title>
