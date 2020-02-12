@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>JN的博客  | 多线程基本原理理解</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.60.1" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="多线程基本原理理解" />
+<meta property="og:description" content="多线程基本原理理解 为什么需要多线程？ 因为主要有以下几个优势：
+ 进程之间不能共享内存，但线程之间共享内存非常容易。 系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多任务并发比多进程的效率高。 Java语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了Java的多线程编程。  这里有一点需要注意，并发性与并行性，并行指再同一时刻，有多余指令再多个处理器上同时执行；并发指同一时刻只能有一条指令执行吗，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。
+多线程带来了什么问题，如何避免？ 主要会带来以下两个问题：
+ 多个线程共享同一个数据时，可能会出现抢占，错拿等问题，例如i&#43;&#43;操作 线程安全问题  那么如何解决这个问题呢，我们可以通过原生的synchronized和JUC(java.util.concurrent)工具包来解决
+线程的属性、状态、生命周期详解 当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态，在它的生命周期，需要经过新建(NEW)，就绪（Ready）,运行（Running）,阻塞（Block）,死亡（Dead）。
+ 新建(NEW)：新创建一个线程对象。 可运行(RUNNABLE)：有的地方也叫就绪状态，线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。 运行(RUNNING)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。 阻塞(BLOCKED)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： (一). 等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。 (二). 同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。 (三). 其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。 死亡(DEAD)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。  为什么需要线程池？ 因为系统启动一个新线程是十分昂贵的操作。
+以上是对于多线程简单粗略的理解，之后会对多线程进行详解。 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/" />
+<meta property="article:published_time" content="2020-02-12T15:39:05+08:00" />
+<meta property="article:modified_time" content="2020-02-12T15:39:05+08:00" />
+<meta itemprop="name" content="多线程基本原理理解">
+<meta itemprop="description" content="多线程基本原理理解 为什么需要多线程？ 因为主要有以下几个优势：
+ 进程之间不能共享内存，但线程之间共享内存非常容易。 系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多任务并发比多进程的效率高。 Java语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了Java的多线程编程。  这里有一点需要注意，并发性与并行性，并行指再同一时刻，有多余指令再多个处理器上同时执行；并发指同一时刻只能有一条指令执行吗，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。
+多线程带来了什么问题，如何避免？ 主要会带来以下两个问题：
+ 多个线程共享同一个数据时，可能会出现抢占，错拿等问题，例如i&#43;&#43;操作 线程安全问题  那么如何解决这个问题呢，我们可以通过原生的synchronized和JUC(java.util.concurrent)工具包来解决
+线程的属性、状态、生命周期详解 当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态，在它的生命周期，需要经过新建(NEW)，就绪（Ready）,运行（Running）,阻塞（Block）,死亡（Dead）。
+ 新建(NEW)：新创建一个线程对象。 可运行(RUNNABLE)：有的地方也叫就绪状态，线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。 运行(RUNNING)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。 阻塞(BLOCKED)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： (一). 等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。 (二). 同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。 (三). 其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。 死亡(DEAD)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。  为什么需要线程池？ 因为系统启动一个新线程是十分昂贵的操作。
+以上是对于多线程简单粗略的理解，之后会对多线程进行详解。 ">
+<meta itemprop="datePublished" content="2020-02-12T15:39:05&#43;08:00" />
+<meta itemprop="dateModified" content="2020-02-12T15:39:05&#43;08:00" />
+<meta itemprop="wordCount" content="40">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="多线程基本原理理解"/>
+<meta name="twitter:description" content="多线程基本原理理解 为什么需要多线程？ 因为主要有以下几个优势：
+ 进程之间不能共享内存，但线程之间共享内存非常容易。 系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多任务并发比多进程的效率高。 Java语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了Java的多线程编程。  这里有一点需要注意，并发性与并行性，并行指再同一时刻，有多余指令再多个处理器上同时执行；并发指同一时刻只能有一条指令执行吗，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。
+多线程带来了什么问题，如何避免？ 主要会带来以下两个问题：
+ 多个线程共享同一个数据时，可能会出现抢占，错拿等问题，例如i&#43;&#43;操作 线程安全问题  那么如何解决这个问题呢，我们可以通过原生的synchronized和JUC(java.util.concurrent)工具包来解决
+线程的属性、状态、生命周期详解 当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态，在它的生命周期，需要经过新建(NEW)，就绪（Ready）,运行（Running）,阻塞（Block）,死亡（Dead）。
+ 新建(NEW)：新创建一个线程对象。 可运行(RUNNABLE)：有的地方也叫就绪状态，线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。 运行(RUNNING)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。 阻塞(BLOCKED)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： (一). 等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。 (二). 同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。 (三). 其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。 死亡(DEAD)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。  为什么需要线程池？ 因为系统启动一个新线程是十分昂贵的操作。
+以上是对于多线程简单粗略的理解，之后会对多线程进行详解。 "/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://jn0916.github.io" class="f3 fw2 hover-white no-underline white-90 dib">
+      JN的博客
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/&amp;text=%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86%e7%90%86%e8%a7%a3" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/&amp;title=%e5%a4%9a%e7%ba%bf%e7%a8%8b%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86%e7%90%86%e8%a7%a3" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+      <h1 class="f1 athelas mt3 mb1">多线程基本原理理解</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2020-02-12T15:39:05&#43;08:00">February 12, 2020</time>
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="heading">多线程基本原理理解</h1>
+<h2 id="heading1">为什么需要多线程？</h2>
+<p>因为主要有以下几个优势：</p>
+<ol>
+<li>进程之间不能共享内存，但线程之间共享内存非常容易。</li>
+<li>系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多任务并发比多进程的效率高。</li>
+<li>Java语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了Java的多线程编程。</li>
+</ol>
+<p>这里有一点需要注意，并发性与并行性，并行指再同一时刻，有多余指令再多个处理器上同时执行；并发指同一时刻只能有一条指令执行吗，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。</p>
+<h2 id="heading2">多线程带来了什么问题，如何避免？</h2>
+<p>主要会带来以下两个问题：</p>
+<ol>
+<li>多个线程共享同一个数据时，可能会出现抢占，错拿等问题，例如i++操作</li>
+<li>线程安全问题</li>
+</ol>
+<p>那么如何解决这个问题呢，我们可以通过原生的synchronized和JUC(java.util.concurrent)工具包来解决</p>
+<h2 id="heading3">线程的属性、状态、生命周期详解</h2>
+<p>当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态，在它的生命周期，需要经过新建(NEW)，就绪（Ready）,运行（Running）,阻塞（Block）,死亡（Dead）。</p>
+<ol>
+<li>新建(NEW)：新创建一个线程对象。</li>
+<li>可运行(RUNNABLE)：有的地方也叫就绪状态，线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。</li>
+<li>运行(RUNNING)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。</li>
+<li>阻塞(BLOCKED)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种：
+(一).  等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。
+(二).  同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。
+(三).  其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。</li>
+<li>死亡(DEAD)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。</li>
+</ol>
+<h2 id="heading4">为什么需要线程池？</h2>
+<p>因为系统启动一个新线程是十分昂贵的操作。</p>
+<h2 id="heading5">以上是对于多线程简单粗略的理解，之后会对多线程进行详解。</h2>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jn0916.github.io" >
+    &copy;  JN的博客 2020 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
