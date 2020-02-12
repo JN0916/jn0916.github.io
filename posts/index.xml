@@ -2,96 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on JN的博客</title>
-    <link>https://jn0916.github.io/posts/</link>
+    <link>https://example.com/posts/</link>
     <description>Recent content in Posts on JN的博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-Hans</language>
+    <language>zh-cn</language>
     <lastBuildDate>Wed, 12 Feb 2020 15:39:05 +0800</lastBuildDate>
     
-	<atom:link href="https://jn0916.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>多线程基本原理理解</title>
-      <link>https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/</link>
+      <link>https://example.com/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/</link>
       <pubDate>Wed, 12 Feb 2020 15:39:05 +0800</pubDate>
       
-      <guid>https://jn0916.github.io/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/</guid>
-      <description>多线程基本原理理解 为什么需要多线程？ 因为主要有以下几个优势：
- 进程之间不能共享内存，但线程之间共享内存非常容易。 系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多任务并发比多进程的效率高。 Java语言内置了多线程功能支持，而不是单纯地作为底层操作系统的调度方式，从而简化了Java的多线程编程。  这里有一点需要注意，并发性与并行性，并行指再同一时刻，有多余指令再多个处理器上同时执行；并发指同一时刻只能有一条指令执行吗，但多个进程指令被快速轮换执行，使得在宏观上具有多个进程同时执行的效果。
-多线程带来了什么问题，如何避免？ 主要会带来以下两个问题：
- 多个线程共享同一个数据时，可能会出现抢占，错拿等问题，例如i++操作 线程安全问题  那么如何解决这个问题呢，我们可以通过原生的synchronized和JUC(java.util.concurrent)工具包来解决
-线程的属性、状态、生命周期详解 当线程被创建并启动以后，它既不是一启动就进入了执行状态，也不是一直处于执行状态，在它的生命周期，需要经过新建(NEW)，就绪（Ready）,运行（Running）,阻塞（Block）,死亡（Dead）。
- 新建(NEW)：新创建一个线程对象。 可运行(RUNNABLE)：有的地方也叫就绪状态，线程对象创建后，其他线程(比如main线程）调用了该对象的start()方法。该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu 的使用权 。 运行(RUNNING)：可运行状态(runnable)的线程获得了cpu 时间片（timeslice） ，执行程序代码。 阻塞(BLOCKED)：阻塞状态是指线程因为某种原因放弃了cpu 使用权，也即让出了cpu timeslice，暂时停止运行。直到线程进入可运行(runnable)状态，才有机会再次获得cpu timeslice 转到运行(running)状态。阻塞的情况分三种： (一). 等待阻塞：运行(running)的线程执行o.wait()方法，JVM会把该线程放入等待队列(waitting queue)中。 (二). 同步阻塞：运行(running)的线程在获取对象的同步锁时，若该同步锁被别的线程占用，则JVM会把该线程放入锁池(lock pool)中。 (三). 其他阻塞：运行(running)的线程执行Thread.sleep(long ms)或t.join()方法，或者发出了I/O请求时，JVM会把该线程置为阻塞状态。当sleep()状态超时、join()等待线程终止或者超时、或者I/O处理完毕时，线程重新转入可运行(runnable)状态。 死亡(DEAD)：线程run()、main() 方法执行结束，或者因异常退出了run()方法，则该线程结束生命周期。死亡的线程不可再次复生。  为什么需要线程池？ 因为系统启动一个新线程是十分昂贵的操作。
-以上是对于多线程简单粗略的理解，之后会对多线程进行详解。 </description>
+      <guid>https://example.com/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/</guid>
+      <description>多线程基本原理理解 为什么需要多线程？ 因为主要有以下几个优势： 进程之间不能共享内存，但线程之间共享内存非常容易。 系统创建进程时需要为该进程重新分配系统资源，但创建线程则代价小得多，因此使用多线程来实现多</description>
     </item>
     
     <item>
       <title>Collection体系小结</title>
-      <link>https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</link>
+      <link>https://example.com/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Sat, 21 Dec 2019 10:01:35 +0800</pubDate>
       
-      <guid>https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</guid>
-      <description>Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存储对象 3. 可以存储多种类型对象  Collection Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）。一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行，于是衍生出两个子类接口List和Set。
-collection体系的结构图
-Collection是一个接口，该接口定义了如下操作集合元素的方法：
- boolean add(Object o):向集合添加一个元素。 boolean addAll(Collection c):把集合C中的所有元素添加到另一个集合中。 Void clear():删除集合中所有元素。 boolean remove(Object o):删除集合中指定元素o。 boolean removeAll(Collection c):从集合中删除集合C里包含的所有元素。 boolean isEmpty():判断集合是否为空。 boolean contains(Object o):判断集合中是否存在指定元素o。 boolean cotainsAll(Collection c):判断集合中是否包含集合C中的所有元素。 lterator iterator():返回一个lterator对象，用来遍历集合中的元素。 int size():返回集合中的元素个数。 boolean retainAll(Collection c):求交集的功能，从集合中删除集合C里不包含的元素。 Object[] toArray():把集合变成数组。  List List最常用的是类是ArrayList,其本质上就是一个数组。数组长度是有限的，ArrayList可无限&amp;quot;存储&amp;rdquo;,这其中就是动态扩容实现的。动态扩容简单来说就是创建一个更大的空间，把所有数据拷贝进去。
-Set Set接口下的元素是无序且不可重复的。
-HashSet 利用Hash算法实现的Set,保证其中元素的唯一性依据两个重要的约定：equals与hashCode
- 首先判断hashCode()值是否相同 相同再继续判断equals(),看返回值，true就添加进集合  hashCode有三大原则：
- 同一对象必须始终返回相同的hashCode值 两个相同的equals返回true,必须返回相同的hashCode值 两个对象不等，也可能返回相同的hashCode值  Map Map是不同于collection的存在，map是一个键值对形式的集合。它的元素都是有键和值组成。Map的键(key)是唯一的,值(value)可以重复。
-Map结构图
-Map接口定义了如下方法：
- V put(K key ,V value) :当key在集合中不存在是,添加元素;当key存在时替换元素 boolean containsKey (Object key) :判断指定的键是否在集合中存在 boolean containsValue(Object value):判断指定的值是否在集合中存在 boolean isEmpty() :判断集合是否为空 Void clear():清除所有键值对数据 Object get (Object key) :根据键获取值 Setkeyset(): 所有键的集合 Collectionvalues() :所有值的集合 Int size()：返回Map里的key-value对的个数  HashMap与HashSet本质上是一种东西</description>
+      <guid>https://example.com/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/</guid>
+      <description>Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存</description>
     </item>
     
     <item>
       <title>Maven与java包管理</title>
-      <link>https://jn0916.github.io/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/</link>
+      <link>https://example.com/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 04 Dec 2019 13:29:44 +0800</pubDate>
       
-      <guid>https://jn0916.github.io/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
-      <description>Maven与java包管理 一、java包管理 题目中的java包管理中的包指的是jar包，这个jar包是什么呢：Java中的jar文件，里面装的是.class文件。其实就是一个压缩包。
-1. JVM的工作 jvm的工作很简单就是：
- 执行一个类的字节码 假如这个过程中碰到了新的类，加载他  2. classpath classpath是一个类路径，jvm加载类的时候会挨个在classpath中找，直到找到为止。
-3.传递性依赖 传递性依赖是指你依赖的类还依赖了别的类，所以要把所有的类放入classpath中。
-4. 包冲突 传递性依赖产生的一个后果就是可能会发生多个同名类同时出现在Classpath中，这就可能会发生包冲突，变成Classpath hell。
-包冲突报的错：
-AbstrctMethodError
-NoClassDefFoundError
-ClassNotFoundException
-LinkageError
-二、Maven包管理 Convention over configuration-约定优于配置 按照maven的一些约定，方便所有人的操作，例如目录结构什么的。
-1. Maven的中央仓库 Maven 中央仓库是由 Maven 社区提供的仓库，其中包含了大量常用的库。就是按照一定的约定存储包。Maven主仓库
-2. Maven的本地仓库  默认位于~/.m2 从中央仓库下载的第三方包放在这里进行缓存  3. Maven的包  由groupId、artifactId、version三个检索坐标信息来引入包。 version是根据语义化版本来约定的。  例如以下的信息：
-&amp;lt;groupId&amp;gt;org.junit.jupiter&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;junit-jupiter-api&amp;lt;/artifactId&amp;gt; &amp;lt;version&amp;gt;5.4.2&amp;lt;/version&amp;gt; maven是通过坐标来引入jar的，在添加jar的同时也可以指定这个jar包的作用范围。 maven的依赖范围包括： compile，provide，runtime，test，system。  compile：表示编译范围，指A在编译时依赖B，该范围为默认依赖范围。编译范围的依赖会用在编译，测试，运行，由于运行时需要，所以编译范围的依赖会被打包。
-provide：provide依赖只有当jdk或者一个容器已提供该依赖之后才使用。provide依赖在编译和测试时需要，在运行时不需要。例如：servlet api被Tomcat容器提供了。
-runtime：runtime依赖在运行和测试系统时需要，但在编译时不需要。例如：jdbc的驱动包。由于运行时需要，所以runtime范围的依赖会被打包。
-test：test范围依赖在编译和运行时都不需要，只在测试编译和测试运行时需要。例如：Junit。由于运行时不需要，所以test范围依赖不会被打包。
-system：system范围依赖与provide类似，但是必须显示的提供一个对于本地系统中jar文件的路径。一般不推荐使用。
-4. Maven解决包冲突  传递性依赖的原则：绝对不允许最终的classpath出现同名不同版本的jar包 Maven包冲突解决原则:离项目最近的jar包使用 Mvn dependency:tree命令行查看依赖树 解决包冲突两种方法：   引入需要的包，让引入的包离项目最近 排除掉冲突的包groupId、artifactId  IDEA中的插件Maven help 也可以解决包冲突  </description>
+      <guid>https://example.com/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/</guid>
+      <description>Maven与java包管理 一、java包管理 题目中的java包管理中的包指的是jar包，这个jar包是什么呢：Java中的jar文件，里面装的是.class文件。其实就是一个压缩包。 1. JVM的工作 jv</description>
     </item>
     
     <item>
       <title>用hugo搭建个人博客</title>
-      <link>https://jn0916.github.io/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <link>https://example.com/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
       <pubDate>Tue, 03 Dec 2019 17:20:31 +0800</pubDate>
       
-      <guid>https://jn0916.github.io/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
-      <description>用hugo搭建个人博客 在这里记录一下如何使用Github +hugo动手搭建自己的个人博客。
-Githubs是一个静态网站托管服务，可以管理你的来自一个Github库的个人的、组织的、或者项目的页面。
-Hugo是由Go语言实现的静态网站生成器。
-以下以Windowns为例来一步步搭建：
-安装Hugo   在Hugo release页面下载对应的windowns安装包hugo_XXX_Windows-64bit.zip。
-  把压缩包解压，解压到C:\Software\hugo\hugo.exe
-  把C:\Software\hugo加到PATH
-  在git bash 中输入hugo version看看是否安装完成，如果有以下跳出来就表示成功了：
-Hugo Static Site Generator v0.60.1-96066756 windows/amd64 BuildDate: 2019-11-29T14:57:23Z
-  用Hugo生成个人博客 进入Hugo官网，按照它的步骤从step2到step7来生成博客
-  创建站点，在自己要放的文件目录中打开git bash,输入命令，把命令的quickstart改为自己的网站文件夹名字jn0916.github.io-creator
-hugo new site jn0916.github.io-creator
-  添加主题，在自己网站文件夹目录下jn0916.github.io-creator运行以下命令：
-   git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml  新建一篇名为my-first-post的文章，命令执行后使用Visual Studio Code编辑文章，并保存。(把draft改为false表示不是草稿)  hugo new posts/my-first-post.md  本地预览网站效果，http://localhost:1313 在这里观看效果。  hugo server -D   网站配置，在Visual Studio Code编辑 config.</description>
+      <guid>https://example.com/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>用hugo搭建个人博客 在这里记录一下如何使用Github +hugo动手搭建自己的个人博客。 Githubs是一个静态网站托管服务，可以管理你的来自一个Github库的个人的、组织的、或者项目的页面。 Hu</description>
     </item>
     
   </channel>

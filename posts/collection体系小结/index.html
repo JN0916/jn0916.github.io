@@ -1,168 +1,117 @@
 <!DOCTYPE html>
-<html lang="zh-Hans">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    
-    <title>JN的博客  | Collection体系小结</title>
-    <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.60.1" />
-    
-    
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-    
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    
-    
-      <link href="/dist/css/app.1cb140d8ba31d5b2f1114537dd04802a.css" rel="stylesheet">
-    
+  
+  <meta name="author"
+        content="Zeuk"/>
 
-    
-
-    
-      
-    
-
-    
-    
-    <meta property="og:title" content="Collection体系小结" />
-<meta property="og:description" content="Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存储对象 3. 可以存储多种类型对象  Collection Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）。一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行，于是衍生出两个子类接口List和Set。
-collection体系的结构图
-Collection是一个接口，该接口定义了如下操作集合元素的方法：
- boolean add(Object o):向集合添加一个元素。 boolean addAll(Collection c):把集合C中的所有元素添加到另一个集合中。 Void clear():删除集合中所有元素。 boolean remove(Object o):删除集合中指定元素o。 boolean removeAll(Collection c):从集合中删除集合C里包含的所有元素。 boolean isEmpty():判断集合是否为空。 boolean contains(Object o):判断集合中是否存在指定元素o。 boolean cotainsAll(Collection c):判断集合中是否包含集合C中的所有元素。 lterator iterator():返回一个lterator对象，用来遍历集合中的元素。 int size():返回集合中的元素个数。 boolean retainAll(Collection c):求交集的功能，从集合中删除集合C里不包含的元素。 Object[] toArray():把集合变成数组。  List List最常用的是类是ArrayList,其本质上就是一个数组。数组长度是有限的，ArrayList可无限&quot;存储&rdquo;,这其中就是动态扩容实现的。动态扩容简单来说就是创建一个更大的空间，把所有数据拷贝进去。
-Set Set接口下的元素是无序且不可重复的。
-HashSet 利用Hash算法实现的Set,保证其中元素的唯一性依据两个重要的约定：equals与hashCode
- 首先判断hashCode()值是否相同 相同再继续判断equals(),看返回值，true就添加进集合  hashCode有三大原则：
- 同一对象必须始终返回相同的hashCode值 两个相同的equals返回true,必须返回相同的hashCode值 两个对象不等，也可能返回相同的hashCode值  Map Map是不同于collection的存在，map是一个键值对形式的集合。它的元素都是有键和值组成。Map的键(key)是唯一的,值(value)可以重复。
-Map结构图
-Map接口定义了如下方法：
- V put(K key ,V value) :当key在集合中不存在是,添加元素;当key存在时替换元素 boolean containsKey (Object key) :判断指定的键是否在集合中存在 boolean containsValue(Object value):判断指定的值是否在集合中存在 boolean isEmpty() :判断集合是否为空 Void clear():清除所有键值对数据 Object get (Object key) :根据键获取值 Setkeyset(): 所有键的集合 Collectionvalues() :所有值的集合 Int size()：返回Map里的key-value对的个数  HashMap与HashSet本质上是一种东西" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/" />
-<meta property="article:published_time" content="2019-12-21T10:01:35+08:00" />
-<meta property="article:modified_time" content="2019-12-21T10:01:35+08:00" />
-<meta itemprop="name" content="Collection体系小结">
-<meta itemprop="description" content="Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存储对象 3. 可以存储多种类型对象  Collection Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）。一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行，于是衍生出两个子类接口List和Set。
-collection体系的结构图
-Collection是一个接口，该接口定义了如下操作集合元素的方法：
- boolean add(Object o):向集合添加一个元素。 boolean addAll(Collection c):把集合C中的所有元素添加到另一个集合中。 Void clear():删除集合中所有元素。 boolean remove(Object o):删除集合中指定元素o。 boolean removeAll(Collection c):从集合中删除集合C里包含的所有元素。 boolean isEmpty():判断集合是否为空。 boolean contains(Object o):判断集合中是否存在指定元素o。 boolean cotainsAll(Collection c):判断集合中是否包含集合C中的所有元素。 lterator iterator():返回一个lterator对象，用来遍历集合中的元素。 int size():返回集合中的元素个数。 boolean retainAll(Collection c):求交集的功能，从集合中删除集合C里不包含的元素。 Object[] toArray():把集合变成数组。  List List最常用的是类是ArrayList,其本质上就是一个数组。数组长度是有限的，ArrayList可无限&quot;存储&rdquo;,这其中就是动态扩容实现的。动态扩容简单来说就是创建一个更大的空间，把所有数据拷贝进去。
-Set Set接口下的元素是无序且不可重复的。
-HashSet 利用Hash算法实现的Set,保证其中元素的唯一性依据两个重要的约定：equals与hashCode
- 首先判断hashCode()值是否相同 相同再继续判断equals(),看返回值，true就添加进集合  hashCode有三大原则：
- 同一对象必须始终返回相同的hashCode值 两个相同的equals返回true,必须返回相同的hashCode值 两个对象不等，也可能返回相同的hashCode值  Map Map是不同于collection的存在，map是一个键值对形式的集合。它的元素都是有键和值组成。Map的键(key)是唯一的,值(value)可以重复。
-Map结构图
-Map接口定义了如下方法：
- V put(K key ,V value) :当key在集合中不存在是,添加元素;当key存在时替换元素 boolean containsKey (Object key) :判断指定的键是否在集合中存在 boolean containsValue(Object value):判断指定的值是否在集合中存在 boolean isEmpty() :判断集合是否为空 Void clear():清除所有键值对数据 Object get (Object key) :根据键获取值 Setkeyset(): 所有键的集合 Collectionvalues() :所有值的集合 Int size()：返回Map里的key-value对的个数  HashMap与HashSet本质上是一种东西">
-<meta itemprop="datePublished" content="2019-12-21T10:01:35&#43;08:00" />
-<meta itemprop="dateModified" content="2019-12-21T10:01:35&#43;08:00" />
-<meta itemprop="wordCount" content="90">
-
-
-
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Collection体系小结"/>
-<meta name="twitter:description" content="Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存储对象 3. 可以存储多种类型对象  Collection Collection是最基本的集合接口，一个Collection代表一组Object，即Collection的元素（Elements）。一些Collection允许相同的元素而另一些不行。一些能排序而另一些不行，于是衍生出两个子类接口List和Set。
-collection体系的结构图
-Collection是一个接口，该接口定义了如下操作集合元素的方法：
- boolean add(Object o):向集合添加一个元素。 boolean addAll(Collection c):把集合C中的所有元素添加到另一个集合中。 Void clear():删除集合中所有元素。 boolean remove(Object o):删除集合中指定元素o。 boolean removeAll(Collection c):从集合中删除集合C里包含的所有元素。 boolean isEmpty():判断集合是否为空。 boolean contains(Object o):判断集合中是否存在指定元素o。 boolean cotainsAll(Collection c):判断集合中是否包含集合C中的所有元素。 lterator iterator():返回一个lterator对象，用来遍历集合中的元素。 int size():返回集合中的元素个数。 boolean retainAll(Collection c):求交集的功能，从集合中删除集合C里不包含的元素。 Object[] toArray():把集合变成数组。  List List最常用的是类是ArrayList,其本质上就是一个数组。数组长度是有限的，ArrayList可无限&quot;存储&rdquo;,这其中就是动态扩容实现的。动态扩容简单来说就是创建一个更大的空间，把所有数据拷贝进去。
-Set Set接口下的元素是无序且不可重复的。
-HashSet 利用Hash算法实现的Set,保证其中元素的唯一性依据两个重要的约定：equals与hashCode
- 首先判断hashCode()值是否相同 相同再继续判断equals(),看返回值，true就添加进集合  hashCode有三大原则：
- 同一对象必须始终返回相同的hashCode值 两个相同的equals返回true,必须返回相同的hashCode值 两个对象不等，也可能返回相同的hashCode值  Map Map是不同于collection的存在，map是一个键值对形式的集合。它的元素都是有键和值组成。Map的键(key)是唯一的,值(value)可以重复。
-Map结构图
-Map接口定义了如下方法：
- V put(K key ,V value) :当key在集合中不存在是,添加元素;当key存在时替换元素 boolean containsKey (Object key) :判断指定的键是否在集合中存在 boolean containsValue(Object value):判断指定的值是否在集合中存在 boolean isEmpty() :判断集合是否为空 Void clear():清除所有键值对数据 Object get (Object key) :根据键获取值 Setkeyset(): 所有键的集合 Collectionvalues() :所有值的集合 Int size()：返回Map里的key-value对的个数  HashMap与HashSet本质上是一种东西"/>
-
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
-
-    
-   
+  
+  <meta name="description" content="Collection体系小结 在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点： 1. 长度可以改变 2. 只能存"/>
   
 
-  <header>
-    <div class="bg-black">
-      <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="https://jn0916.github.io" class="f3 fw2 hover-white no-underline white-90 dib">
-      JN的博客
-    </a>
-    <div class="flex-l items-center">
-      
-
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-  </div>
-</nav>
-
-    </div>
-  </header>
-
-
-
-    <main class="pb7" role="main">
-      
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
-    <header class="mt4 w-100">
-      <aside class="instapaper_ignoref b helvetica tracked">
-          
-        POSTS
-      </aside>
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://example.com/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/"/>
+
+  
+
+  <title>Collection体系小结 &middot; JN的博客</title>
+
+  <link rel="shortcut icon" href="https://example.com/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://example.com/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://example.com/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://example.com/css/zozo.css"/>
+  <link rel="stylesheet" href="https://example.com/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
       
-
-
-
-
-  <div id="sharing" class="mt3">
-
-    
-    <a href="https://www.facebook.com/sharer.php?u=https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/" class="facebook no-underline" aria-label="share on Facebook">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
-
-    </a>
-
-    
-    
-    <a href="https://twitter.com/share?url=https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/&amp;text=Collection%e4%bd%93%e7%b3%bb%e5%b0%8f%e7%bb%93" class="twitter no-underline" aria-label="share on Twitter">
-      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
-
-    </a>
-
-    
-    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://jn0916.github.io/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/&amp;title=Collection%e4%bd%93%e7%b3%bb%e5%b0%8f%e7%bb%93" class="linkedin no-underline" aria-label="share on LinkedIn">
-      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
-</svg>
-
-    </a>
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
   </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
 
-      <h1 class="f1 athelas mt3 mb1">Collection体系小结</h1>
-      
-      
-      <time class="f6 mv4 dib tracked" datetime="2019-12-21T10:01:35&#43;08:00">December 21, 2019</time>
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://example.com">
+          <span>JN的博客</span>
+          <img src="https://example.com/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">the site subtitle</p>
+      <div class="my_socials">
+        
+        
+        <a href="%20" title="facebook" target="_blank"><i class="remixicon-facebook-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="weibo" target="_blank"><i class="remixicon-weibo-fill"></i></a>
+        
+        
+        <a href="https://example.com/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
 
-      
-      
-    </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="collection">Collection体系小结</h1>
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/'>Collection体系小结</a></h2>
+          <span class="date">2019.12.21</span>
+        </div>
+        <div class="post_content markdown"><h1 id="collection">Collection体系小结</h1>
 <pre><code>在编程时候，我们需要集中存放多个数据，数组是个很好的方法，但是有时候数组不能很好的完成一些事情，这时候就需要我们用集合。集合跟数组相比有以下几个特点：
 1. 长度可以改变
 2. 只能存储对象
@@ -221,52 +170,77 @@ Map接口定义了如下方法：
 <li>Int size()：返回Map里的key-value对的个数</li>
 </ol>
 <p>HashMap与HashSet本质上是一种东西</p>
-<ul class="pa0">
-  
-</ul>
-<div class="mt6 instapaper_ignoref">
-      
-      
-      </div>
-    </div>
-
-    <aside class="w-30-l mt6-l">
-
-
-
-
-</aside>
-
-  </article>
-
-    </main>
-    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-  <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jn0916.github.io" >
-    &copy;  JN的博客 2020 
-  </a>
-    <div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
+        <div class="post_footer">
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>我的精神家园</span>
   </div>
 </footer>
 
+
+
+<script src="https://example.com/js/jquery-3.3.1.min.js"></script>
+<script src="https://example.com/js/zozo.js"></script>
+<script src="https://example.com/js/highlight.pack.js"></script>
+<link  href="https://example.com/css/fancybox.min.css" rel="stylesheet">
+<script src="https://example.com/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
     
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
 
-  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
 
 
-  </body>
+
+
+
+
+</body>
 </html>
