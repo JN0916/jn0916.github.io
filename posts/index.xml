@@ -17,7 +17,7 @@
       <pubDate>Wed, 12 Feb 2020 15:39:05 +0800</pubDate>
       
       <guid>https://jn0916.github.io/posts/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%A7%8D%E7%9A%84mid%E5%80%BC/</guid>
-      <description>多线程基本原理理解 在二分查找中mid值有以下两种写法：mid=(low+high)/2与mid=low+(high-low)/2。 此时我们需要用mid=low+(high-low)/2，不用mid=(</description>
+      <description>二分查找种的mid值 在二分查找中mid值有以下两种写法：mid=(low+high)/2与mid=low+(high-low)/2。 此时我们需要用mid=low+(high-low)/2，不用mid=</description>
     </item>
     
     <item>
