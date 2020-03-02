@@ -10,7 +10,7 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="浅析URL 什么是URL？ URL(Uniform Resource Locator)统一资源定位符是因特网上标准的资源的地址,如同在网络上的门牌。它最初是由蒂姆·伯纳斯-李发明用来作为万维网的地址。 URL= 协议 &#43; 域名/IP &#43; 端口 &#43; 路径 &#43; 查询参数 &#43;"/>
   
 
   
@@ -19,13 +19,11 @@
   
 
   
-  <link rel="canonical" href="https://jn0916.github.io/posts/"/>
+  <link rel="canonical" href="https://jn0916.github.io/posts/%E6%B5%85%E6%9E%90url/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jn0916.github.io/posts/index.xml">
-  
 
-  <title>Posts &middot; J丶N的博客</title>
+  <title>浅析URL &middot; J丶N的博客</title>
 
   <link rel="shortcut icon" href="https://jn0916.github.io/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jn0916.github.io/css/animate.min.css"/>
@@ -107,69 +105,49 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2020</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E6%B5%85%E6%9E%90url/">浅析URL</a>
-            <div class="post_time"><span class="date">03-02</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/%E6%B5%85%E6%9E%90url/'>浅析URL</a></h2>
+          <span class="date">2020.03.02</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML常用标签</a>
-            <div class="post_time"><span class="date">03-02</span></div>
-          </div>
+        <div class="post_content markdown"><h1 id="url">浅析URL</h1>
+<h2 id="url1">什么是URL？</h2>
+<p>URL(Uniform Resource Locator)统一资源定位符是因特网上标准的资源的地址,如同在网络上的门牌。它最初是由蒂姆·伯纳斯-李发明用来作为万维网的地址。</p>
+<p>URL= 协议 + 域名/IP + 端口 + 路径 + 查询参数 + 锚点</p>
+<h2 id="dns-nslookup-">DNS 的作用是什么，nslookup 命令怎么用</h2>
+<p>DNS 的全称是 Domain Name System 或者 Domain Name Service，它主要的作用就是将人们所熟悉的网址 (域名) “翻译”成电脑可以理解的 IP 地址，这个过程叫做 DNS 域名解析。</p>
+<p>通过nslookup命令可以查看域名对应的ip地址：</p>
+<pre><code>nslookup baidu.com
+</code></pre><h2 id="ip-ping-">IP 的作用是什么，ping 命令怎么用</h2>
+<p>IP的主要作用就是2个：</p>
+<ol>
+<li>如何定位一台设备。</li>
+<li>如何封装数据报文，以跟其他设备交流。</li>
+</ol>
+<p>IP分为内网与外网，中间通过路由器将其联通。每个路由器都有自己独立的外网IP，可以用过ip138.com查询。不同设备连接同一路由器，通过内网IP分发。</p>
+<p>特殊的IP：</p>
+<ul>
+<li>127.0.0.1 表示自己</li>
+<li>localhost 表示通过hosts指定为自己</li>
+<li>0.0.0.0   不表示任何设备。</li>
+</ul>
+<p>ping的用法可以在命令行中输入ping + 域名/ip。可以得到域名的解析记录。</p>
+<h2 id="heading">域名是什么，分别哪几类域名</h2>
+<p>域名就是对IP的别称。</p>
+<ol>
+<li>多个域名可以对应同一个IP</li>
+<li>一个域名也可以对应多个IP（负载均衡）</li>
+</ol>
+<p>域名分为顶级域名和二级域名；顶级域名又可分为国际域名和国内域名；二级域名分为类别域名和行政区域名。</p>
+</div>
+        <div class="post_footer">
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/">多线程基本原理理解</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%A7%8D%E7%9A%84mid%E5%80%BC/">二分查找种的mid值</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
-        </div>
-        
       </div>
       
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/">Collection体系小结</a>
-            <div class="post_time"><span class="date">12-21</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/">Maven与java包管理</a>
-            <div class="post_time"><span class="date">12-04</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">用hugo搭建个人博客</a>
-            <div class="post_time"><span class="date">12-03</span></div>
-          </div>
-        </div>
-        
-      </div>
       
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>

@@ -6,10 +6,19 @@
     <description>Recent content on J丶N的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 02 Mar 2020 14:14:23 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 20:12:11 +0800</lastBuildDate>
     
 	<atom:link href="https://jn0916.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>浅析URL</title>
+      <link>https://jn0916.github.io/posts/%E6%B5%85%E6%9E%90url/</link>
+      <pubDate>Mon, 02 Mar 2020 20:12:11 +0800</pubDate>
+      
+      <guid>https://jn0916.github.io/posts/%E6%B5%85%E6%9E%90url/</guid>
+      <description>浅析URL 什么是URL？ URL(Uniform Resource Locator)统一资源定位符是因特网上标准的资源的地址,如同在网络上的门牌。它最初是由蒂姆·伯纳斯-李发明用来作为万维网的地址。 URL= 协议 + 域名/IP + 端口 + 路径 + 查询参数 +</description>
+    </item>
     
     <item>
       <title>HTML常用标签</title>
