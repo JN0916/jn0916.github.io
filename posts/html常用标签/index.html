@@ -10,7 +10,7 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="HTML 常用标签 HTML(HyperText Markup Language)是一种是一种用于创建网页的超文本标记语言。 这里先简单介绍以下三中标签 a 标签 作用：a 元素可以创建一个到其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接 属"/>
   
 
   
@@ -19,13 +19,11 @@
   
 
   
-  <link rel="canonical" href="https://jn0916.github.io/posts/"/>
+  <link rel="canonical" href="https://jn0916.github.io/posts/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jn0916.github.io/posts/index.xml">
-  
 
-  <title>Posts &middot; J丶N的博客</title>
+  <title>HTML常用标签 &middot; J丶N的博客</title>
 
   <link rel="shortcut icon" href="https://jn0916.github.io/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jn0916.github.io/css/animate.min.css"/>
@@ -107,62 +105,77 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2020</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML常用标签</a>
-            <div class="post_time"><span class="date">03-02</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/'>HTML常用标签</a></h2>
+          <span class="date">2020.03.02</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/">多线程基本原理理解</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
+        <div class="post_content markdown"><h1 id="html-">HTML 常用标签</h1>
+<p>HTML(HyperText Markup Language)是一种是一种用于创建网页的超文本标记语言。</p>
+<p>这里先简单介绍以下三中标签</p>
+<h2 id="a-">a 标签</h2>
+<p>作用：a 元素可以创建一个到其他网页、文件、同一页面内的位置、电子邮件地址或任何其他 URL 的超链接</p>
+<p>属性：</p>
+<ol>
+<li>href:可以跳转到某个指定的地址或者文件</li>
+</ol>
+<pre><code>&lt;a href=&quot;http://qq.com&quot;&gt;QQ&lt;/a&gt;
+</code></pre><ol start="2">
+<li>target:该属性指定在何处显示链接的资源。target 属性的四个关键字具有特殊的意义：</li>
+</ol>
+<ul>
+<li>_self ：加载当前页面，如果没有指定属性，则此值为默认；</li>
+<li>_top： 加载响应进入顶层页面，如果没有父级框架或页面，效果与 _self 相同；</li>
+<li>_parent：在父级页面打开地址；</li>
+<li>_blank：在新窗口打开；</li>
+</ul>
+<h2 id="img-">img 标签</h2>
+<p>作用：发出 get 请求，展示一张图片</p>
+<p>属性：</p>
+<ol>
+<li>alt：图像的替代文本；</li>
+<li>src：显示图像的 URL；</li>
+<li>height：图像的高度；</li>
+<li>width：图像的宽度；</li>
+</ol>
+<p>img 响应式：适用于多种设备查看图片</p>
+<pre><code>img {
+max-width: 100%;
+    }
+</code></pre><h2 id="table-">table 标签</h2>
+<p>作用：定义一个表格，以以下标签共同组成 table thead tbody tfoot tr td th</p>
+<pre><code>&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;表头1&lt;/th&gt;
+&lt;th&gt;表头2&lt;/th&gt;
+&lt;th&gt;表头3&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;内容1&lt;/td&gt;
+&lt;td&gt;内容2&lt;/td&gt;
+&lt;td&gt;内容3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td&gt;脚注1&lt;/td&gt;
+&lt;td&gt;脚注2&lt;/td&gt;
+&lt;td&gt;脚注2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+</code></pre></div>
+        <div class="post_footer">
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%A7%8D%E7%9A%84mid%E5%80%BC/">二分查找种的mid值</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
-        </div>
-        
       </div>
       
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/">Collection体系小结</a>
-            <div class="post_time"><span class="date">12-21</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/">Maven与java包管理</a>
-            <div class="post_time"><span class="date">12-04</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">用hugo搭建个人博客</a>
-            <div class="post_time"><span class="date">12-03</span></div>
-          </div>
-        </div>
-        
-      </div>
       
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
