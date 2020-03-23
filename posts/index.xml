@@ -6,10 +6,19 @@
     <description>Recent content in Posts on J丶N的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 02 Mar 2020 20:12:11 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 23 Mar 2020 21:53:53 +0800</lastBuildDate>
     
 	<atom:link href="https://jn0916.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>异常体系理解</title>
+      <link>https://jn0916.github.io/posts/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Mon, 23 Mar 2020 21:53:53 +0800</pubDate>
+      
+      <guid>https://jn0916.github.io/posts/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%90%86%E8%A7%A3/</guid>
+      <description>异常体系理解 异常体系简介 异常是指由于各种不期而至的情况，导致程序中断运行的一种指令流,如：文件找不到、非法参数、网络超时等。为了保证正序正常运行，在设计程序时必须考虑到各种异常情况，并正确的对异常进行</description>
+    </item>
     
     <item>
       <title>浅析URL</title>

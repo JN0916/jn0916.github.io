@@ -10,7 +10,7 @@
         content="Zeuk"/>
 
   
-  <meta name="description" content="Hugo theme zozo example site."/>
+  <meta name="description" content="异常体系理解 异常体系简介 异常是指由于各种不期而至的情况，导致程序中断运行的一种指令流,如：文件找不到、非法参数、网络超时等。为了保证正序正常运行，在设计程序时必须考虑到各种异常情况，并正确的对异常进行"/>
   
 
   
@@ -19,13 +19,11 @@
   
 
   
-  <link rel="canonical" href="https://jn0916.github.io/posts/"/>
+  <link rel="canonical" href="https://jn0916.github.io/posts/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%90%86%E8%A7%A3/"/>
 
   
-  <link rel="alternate" type="application/rss&#43;xml" href="https://jn0916.github.io/posts/index.xml">
-  
 
-  <title>Posts &middot; J丶N的博客</title>
+  <title>异常体系理解 &middot; J丶N的博客</title>
 
   <link rel="shortcut icon" href="https://jn0916.github.io/images/favicon.ico"/>
   <link rel="stylesheet" href="https://jn0916.github.io/css/animate.min.css"/>
@@ -107,76 +105,41 @@
 </div>
 
   <div class="content">
-    <div class="list_with_title">
-      
-      <div class="listing_title">2020</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%90%86%E8%A7%A3/">异常体系理解</a>
-            <div class="post_time"><span class="date">03-23</span></div>
-          </div>
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E7%90%86%E8%A7%A3/'>异常体系理解</a></h2>
+          <span class="date">2020.03.23</span>
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E6%B5%85%E6%9E%90url/">浅析URL</a>
-            <div class="post_time"><span class="date">03-02</span></div>
-          </div>
+        <div class="post_content markdown"><h1 id="heading">异常体系理解</h1>
+<h2 id="heading1">异常体系简介</h2>
+<p>异常是指由于各种不期而至的情况，导致程序中断运行的一种指令流,如：文件找不到、非法参数、网络超时等。为了保证正序正常运行，在设计程序时必须考虑到各种异常情况，并正确的对异常进行处理。异常也是一种对象，java当中定义了许多异常类，并且定义了基类java.lang.Throwable作为所有异常的超类。</p>
+<p><img src="https://s1.ax1x.com/2020/03/23/8HUc9S.png" alt="异常"></p>
+<p>Throwable：有两个重要的子类：Exception（异常）和Error（错误），两者都包含了大量的异常处理类。</p>
+<ol>
+<li>Error（错误）：是程序中无法处理的错误，表示运行应用程序中出现了严重的错误。此类错误一般表示代码运行时JVM出现问题。通常有Virtual MachineError（虚拟机运行错误）、NoClassDefFoundError（类定义错误）等。比如说当jvm耗完可用内存时，将出现OutOfMemoryError。此类错误发生时，JVM将终止线程。
+这些错误是不可查的，非代码性错误。因此，当此类错误发生时，应用不应该去处理此类错误。</li>
+<li>Exception（异常）：程序本身可以捕获并且可以处理的异常</li>
+</ol>
+<p>Exception又分为受检异常(checked exception)与不受检异常(unchecked exception):</p>
+<ol>
+<li>受检异常：编译器要求必须处理的异常。正确的程序在运行过程中，经常容易出现的、符合预期的异常情况。一旦发生此类异常，就必须采用某种方式进行处理。除RuntimeException及其子类外，其他的Exception异常都属于可查异常。编译器会检查此类异常，也就是说当编译器检查到应用中的某处可能会此类异常时，将会提示你处理本异常——要么使用try-catch捕获，要么使用throws语句抛出，否则编译不通过。</li>
+<li>不受检异常：编译器不会进行检查并且不要求必须处理的异常，也就说当程序中出现此类异常时，即使我们没有try-catch捕获它，也没有使用throws抛出该异常，编译也会正常通过。该类异常包括运行时异常（RuntimeException极其子类）和错误（Error）。</li>
+</ol>
+<h2 id="heading2">异常处理总结</h2>
+<ul>
+<li>try块：用于捕获异常。其后可接零个或多个catch块，如果没有catch块，则必须跟一个finally块</li>
+<li>catch块：用于处理try捕获到的异常。</li>
+<li>finally块:无论是否捕获或者处理异常，finally块里的语句都会被执行。当在try块或catch块中遇到return语句时，finally语句将在方法返回之前被执行。</li>
+</ul>
+</div>
+        <div class="post_footer">
+          
         </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/html%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE/">HTML常用标签</a>
-            <div class="post_time"><span class="date">03-02</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E7%90%86%E8%A7%A3/">多线程基本原理理解</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%A7%8D%E7%9A%84mid%E5%80%BC/">二分查找种的mid值</a>
-            <div class="post_time"><span class="date">02-12</span></div>
-          </div>
-        </div>
-        
       </div>
       
-      <div class="listing_title">2019</div>
-      <div class="listing">
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/collection%E4%BD%93%E7%B3%BB%E5%B0%8F%E7%BB%93/">Collection体系小结</a>
-            <div class="post_time"><span class="date">12-21</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/maven%E4%B8%8Ejava%E5%8C%85%E7%AE%A1%E7%90%86/">Maven与java包管理</a>
-            <div class="post_time"><span class="date">12-04</span></div>
-          </div>
-        </div>
-        
-        <div class="listing_item">
-          <div class="listing_post">
-            <a href="/posts/%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">用hugo搭建个人博客</a>
-            <div class="post_time"><span class="date">12-03</span></div>
-          </div>
-        </div>
-        
-      </div>
       
     </div>
-    <div class="pagination"></div>
   </div>
   <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
 </div>
