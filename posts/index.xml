@@ -6,10 +6,19 @@
     <description>Recent content in Posts on J丶N的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Mar 2020 21:53:53 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Mar 2020 18:30:57 +0800</lastBuildDate>
     
 	<atom:link href="https://jn0916.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>注解的理解</title>
+      <link>https://jn0916.github.io/posts/%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%90%86%E8%A7%A3/</link>
+      <pubDate>Tue, 24 Mar 2020 18:30:57 +0800</pubDate>
+      
+      <guid>https://jn0916.github.io/posts/%E6%B3%A8%E8%A7%A3%E7%9A%84%E7%90%86%E8%A7%A3/</guid>
+      <description>注解的理解 1 什么是注解？ 注解提供了一种为程序元素设置元数据的方法。从某些方面来看，注解就像修饰符一样，可用于修饰包、类、构造器、方法、成员变量、参数、局部变量的声明。注解不会也不能影响代码的实际逻辑，</description>
+    </item>
     
     <item>
       <title>异常体系理解</title>
