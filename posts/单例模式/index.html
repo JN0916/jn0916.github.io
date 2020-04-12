@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-cn" >
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  
+  <meta name="author"
+        content="Zeuk"/>
+
+  
+  <meta name="description" content="单例模式 1、单例模式的意图 保证一个类仅有一个实例，并提供一个访问它的全局访问点 常见的单例模式有： MyBatis 的 SessionFactory Spring Bean Java Runtime 2、单例模式的动机 在软件工程里经常有一些特殊类，必须保证他们在系统里面有且仅有一个实例 绕开"/>
+  
+
+  
+  
+  <meta name="keywords" content="Hugo, theme, zozo"/>
+  
+
+  
+  <link rel="canonical" href="https://jn0916.github.io/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+
+  
+
+  <title>单例模式 &middot; J丶N的博客</title>
+
+  <link rel="shortcut icon" href="https://jn0916.github.io/images/favicon.ico"/>
+  <link rel="stylesheet" href="https://jn0916.github.io/css/animate.min.css"/>
+  <link rel="stylesheet" href="https://jn0916.github.io/css/remixicon.css"/>
+  <link rel="stylesheet" href="https://jn0916.github.io/css/zozo.css"/>
+  <link rel="stylesheet" href="https://jn0916.github.io/css/highlight.css"/>
+
+  
+  
+</head>
+
+<body>
+<div class="main animated">
+  <div class="nav_container animated fadeInDown">
+  <div class="site_nav" id="site_nav">
+    <ul>
+      
+      <li>
+        <a href="/">首页</a>
+      </li>
+      
+      <li>
+        <a href="/posts/">归档</a>
+      </li>
+      
+      <li>
+        <a href="/tags/">标签</a>
+      </li>
+      
+      <li>
+        <a href="/about/">关于</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="menu_icon">
+    <a id="menu_icon"><i class="remixicon-links-line"></i></a>
+  </div>
+</div>
+
+  <div class="header animated fadeInDown">
+  <div class="site_title_container">
+    <div class="site_title">
+      <h1>
+        <a href="https://jn0916.github.io">
+          <span>J丶N的博客</span>
+          <img src="https://jn0916.github.io/images/logo.svg"/>
+        </a>
+      </h1>
+    </div>
+    <div class="description">
+      <p class="sub_title">the site subtitle</p>
+      <div class="my_socials">
+        
+        
+        <a href="%20" title="facebook" target="_blank"><i class="remixicon-facebook-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="github" target="_blank"><i class="remixicon-github-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="instagram" target="_blank"><i class="remixicon-instagram-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="twitter" target="_blank"><i class="remixicon-twitter-fill"></i></a>
+        
+        
+        
+        <a href="%20" title="weibo" target="_blank"><i class="remixicon-weibo-fill"></i></a>
+        
+        
+        <a href="https://jn0916.github.io/index.xml" type="application/rss+xml" title="rss" target="_blank"><i class="remixicon-rss-fill"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div class="content">
+    <div class="post_page">
+      <div class="post animated fadeInDown">
+        <div class="post_title post_detail_title">
+          <h2><a href='/posts/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/'>单例模式</a></h2>
+          <span class="date">2020.04.11</span>
+        </div>
+        <div class="post_content markdown"><h1 id="heading">单例模式</h1>
+<h2 id="1">1、单例模式的意图</h2>
+<p>保证一个类仅有一个实例，并提供一个访问它的全局访问点
+常见的单例模式有：</p>
+<ul>
+<li>MyBatis 的 SessionFactory</li>
+<li>Spring Bean</li>
+<li>Java Runtime</li>
+</ul>
+<h2 id="2">2、单例模式的动机</h2>
+<ul>
+<li>在软件工程里经常有一些特殊类，必须保证他们在系统里面有且仅有一个实例</li>
+<li>绕开 new,提供一种方式来确保一个类只有一个实例</li>
+<li>需要由类设计者来考虑实现而不是类使用者来保证</li>
+</ul>
+<h2 id="3">3、单例模式的优势</h2>
+<ul>
+<li>提供了对唯一实例的受控访问</li>
+<li>对于频繁使用的对象，可以省略创建对象所花费的时间，这对于哪些重量级对象而言，是非常可观的一笔系统开销</li>
+<li>由于 new 操作的次数减少，因而对系统内存的使用频率也会降低，这将减轻 GC 压力，缩短 GC 停顿时间</li>
+</ul>
+<h2 id="4">4、单例模式的结构组成</h2>
+<p>Singleton：定义一个 Instance 操作，允许客户访问的唯一实例</p>
+<h2 id="5">5、单例模式七种方式</h2>
+<p><img src="https://user-gold-cdn.xitu.io/2020/4/12/1716c08dca6ced03?w=930&amp;h=400&amp;f=png&amp;s=44770" alt="单例模式.png"></p>
+<p>懒汉式与饿汉式：</p>
+<ul>
+<li>所谓的懒汉式与饿汉式区别在于创建对象的时间</li>
+<li>懒汉式是等到真正用到的时候才会建立这个单例对象</li>
+<li>饿汉式实不管你用不用到一开始都给创建上</li>
+</ul>
+<h3 id="51">5.1、饿汉式</h3>
+<ul>
+<li>构造器 private，防止 new</li>
+<li>类的内部创建对象，向外暴露一个静态公共方法 getInstanche</li>
+<li>优点：</li>
+</ul>
+<ol>
+<li>简单明了</li>
+<li>依赖 JVM 类加载机制，保证单例只会被创建 1 次，既线程安全</li>
+<li>在类装载时就完成了实例化，避免了线程同步问题</li>
+</ol>
+<ul>
+<li>缺点：</li>
+</ul>
+<ol>
+<li>不能懒加载(Lazy Loadiong),有可能会造成内存浪费</li>
+</ol>
+<ul>
+<li>可以在工程代码中使用</li>
+</ul>
+<hr>
+<ol>
+<li>饿汉式-静态常量</li>
+</ol>
+<pre><code>// Singleton with public final field
+Public Class Singleton {
+    public static final Singleton INSTANCE = new Singleton();
+    // private constructor
+    private Singleton() {}
+    public void doSomething() {...}
+    }
+
+// Singleton with static factory
+Public Class Singleton {
+    public static final Singleton INSTANCE = new Singleton();
+    // private constructor
+    private Singleton() {}
+
+    public static Singleton getInstance(){
+        return INSTANCE;
+    }
+    public void doSomething() {...}
+    }
+</code></pre><ol start="2">
+<li>饿汉式-静态代码块</li>
+</ol>
+<pre><code>Public Class Singleton {
+    private Singleton() {}
+
+    private static Singleton instance;
+
+    static {
+        instance = new Singleton();
+    }
+
+    public static Singleton getInstance(){
+        return INSTANCE;
+    }
+</code></pre><h3 id="52">5.2、懒汉式</h3>
+<ol>
+<li>线程不安全：</li>
+</ol>
+<ul>
+<li>可以懒加载，但线程不安全，只能在单线程使用</li>
+<li>在多线程情况下，一个线程进入了 if 语句判断发现为空，还没来得及创建，另一个线程也判断为空，这时候会创建多个实例</li>
+<li>不能在实际环境中使用</li>
+</ul>
+<pre><code>Public Class Singleton {
+   private static Singleton instance;
+
+   private Singleton() {}
+   public static Singleton getInstance(){
+       if(instance == null){
+           instance = new Singleton;
+       }
+       return instance;
+   }
+</code></pre><ol start="2">
+<li>线程安全：</li>
+</ol>
+<ul>
+<li>能懒加载</li>
+<li>加锁导致效率低(程序串行化)，每个线程在获得实例时都要进行同步，哪怕已经是读的操作</li>
+<li>不推荐使用</li>
+</ul>
+<pre><code> Public Class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}
+    public static synchronized Singleton getInstance(){
+        if(instance == null){
+            instance = new Singleton;
+        }
+        return instance;
+    }
+</code></pre><h3 id="53-">5.3、 双重检查</h3>
+<ul>
+<li>通过两次检查保证线程安全</li>
+<li>问题：可能会导致空指针异常(重排序 reorder)</li>
+<li>实例化只执行一此</li>
+<li>线程安全，延迟加载</li>
+</ul>
+<pre><code> Public Class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance(){
+        if(instance == null){
+            synchronized(Singleton.class) {
+                if(instance == null){
+                    instance = new Singleton;
+                }
+            }
+        }
+        return instance;
+    }
+</code></pre><p>加 volatile 改进后:</p>
+<ul>
+<li>保证可见性：</li>
+</ul>
+<ol>
+<li>确保将变量的更新操作通知到其他线程</li>
+<li>变量声明为 volatile 后，编译器与运行时会注意到这个变量是共享的</li>
+<li>读取 volatile 类型的变量总会返回最新写入的值</li>
+</ol>
+<ul>
+<li>防止指令重排序</li>
+</ul>
+<ol>
+<li>被 volatile 修饰的写变量不能和之前的读写代码调整</li>
+<li>读变量不能和之后的读写代码调整</li>
+</ol>
+<pre><code> Public Class Singleton {
+    private static volatile Singleton instance;
+
+    private Singleton() {}
+    public static Singleton getInstance(){
+        if(instance == null){
+            synchronized(Singleton.class) {
+                if(instance == null){
+                    instance = new Singleton;
+                }
+            }
+        }
+        return instance;
+    }
+</code></pre><h3 id="54">5.4、静态内部类</h3>
+<ul>
+<li>静态内部类在 Singleton 类被装载时并不会立即实例化</li>
+<li>类的静态属性只会在第一次加载类的时候初始化，保证了线程安全性</li>
+<li>避免了线程不安全，利用静态内部类特点实现延迟加载</li>
+</ul>
+<pre><code>public class Singleton{
+    private Singleton() {}
+
+    private static class SingletonInstance {
+        private Static final Singleton INSTANCE = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return SingletonInstance.INSTANCE；
+    }
+}
+</code></pre><h3 id="55">5.5、枚举</h3>
+<pre><code>public enum Singleton{
+    INSTANCE;
+    public void doSomething(){...}
+}
+</code></pre></div>
+        <div class="post_footer">
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+  <a id="back_to_top" href="#" class="back_to_top"><span>△</span></a>
+</div>
+<footer class="footer">
+  <div class="powered_by">
+    <a href="https://zeuk.me">Designed by Zeuk,</a>
+    <a href="http://www.gohugo.io/">Proudly published with Hugo</a>
+  </div>
+
+  <div class="footer_slogan">
+    <span>我的精神家园</span>
+  </div>
+</footer>
+
+
+
+<script src="https://jn0916.github.io/js/jquery-3.3.1.min.js"></script>
+<script src="https://jn0916.github.io/js/zozo.js"></script>
+<script src="https://jn0916.github.io/js/highlight.pack.js"></script>
+<link  href="https://jn0916.github.io/css/fancybox.min.css" rel="stylesheet">
+<script src="https://jn0916.github.io/js/fancybox.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad()</script>
+
+
+  <script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[\[','\]\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<style>
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+</style>
+
+
+
+
+
+
+</body>
+</html>
